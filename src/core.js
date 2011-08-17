@@ -807,7 +807,7 @@
                 }
             };
         
-        return format ? format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|S)/g, 
+        return format ? format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|uu?|tt?|z?|S)/g, 
         function (m) {
             if (m.charAt(0) === "\\") {
                 return m.replace("\\", "");
@@ -830,6 +830,8 @@
                 return p(x.getSeconds());
             case "s":
                 return x.getSeconds();
+            case "uu":
+            	return p(x.getMilliseconds(), 3);
             case "yyyy":
                 return p(x.getFullYear(), 4);
             case "yy":
@@ -854,6 +856,8 @@
                 return x.h() < 12 ? $C.amDesignator.substring(0, 1) : $C.pmDesignator.substring(0, 1);
             case "tt":
                 return x.h() < 12 ? $C.amDesignator : $C.pmDesignator;
+            case "z":
+                return x.getUTCOffset();
             case "S":
                 return ord(x.getDate());
             default: 
