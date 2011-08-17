@@ -857,7 +857,8 @@
             case "tt":
                 return x.h() < 12 ? $C.amDesignator : $C.pmDesignator;
             case "z":
-                return x.getUTCOffset();
+                y = x.getUTCOffset();
+                return y.substring(0, y.length - 2) + ":" + y.substring(y.length - 2);
             case "S":
                 return ord(x.getDate());
             default: 
